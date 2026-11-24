@@ -9,4 +9,4 @@ A **sample / demo** landing page I built to show my front-end style. It is not f
 
 Open `index.html` in a browser to view it.
 
-Built by Ahmed Elhosiny, ITI Full-Stack .NET / Angular graduate. Built with AI assistance.
+Built by Ahmed Elhosiny, Full-Stack .NET / Angular developer. Built with AI assistance.
