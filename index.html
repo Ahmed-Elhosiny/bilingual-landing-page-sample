@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample landing page | نموذج صفحة هبوط</title>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--acc:#38bdf8;--txt:#e2e8f0;--mut:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 6%;position:sticky;top:0;background:rgba(15,23,42,.92);backdrop-filter:blur(6px)}
+.logo{font-weight:700;color:var(--acc);font-size:1.2rem}
+button.lang{background:none;border:1px solid var(--acc);color:var(--acc);padding:6px 14px;border-radius:20px;cursor:pointer}
+.hero{padding:90px 6% 70px;text-align:center}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:14px}
+.hero p{color:var(--mut);max-width:620px;margin:0 auto 28px}
+.btn{display:inline-block;background:var(--acc);color:#0f172a;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;padding:30px 6%}
+.card{background:var(--card);padding:22px;border-radius:12px}
+.card h3{color:var(--acc);margin-bottom:8px}
+.price{padding:40px 6%;text-align:center}
+form{max-width:420px;margin:20px auto 60px;display:grid;gap:12px;padding:0 6%}
+input,textarea{padding:12px;border-radius:8px;border:1px solid #334155;background:var(--card);color:var(--txt);font:inherit}
+form button{padding:12px;border:0;border-radius:8px;background:var(--acc);font-weight:700;cursor:pointer}
+footer{text-align:center;color:var(--mut);padding:24px;font-size:.85rem;border-top:1px solid #1e293b}
+#msg{text-align:center;color:var(--acc)}
+</style>
+</head>
+<body>
+<header><div class="logo">Sample Co.</div><button class="lang" id="lang">English</button></header>
+<section class="hero">
+<h1 data-ar="أطلق منتجك بصفحة واضحة وسريعة" data-en="Launch your product with a clear, fast page">أطلق منتجك بصفحة واضحة وسريعة</h1>
+<p data-ar="هذه صفحة نموذجية (بدون عميل حقيقي) لعرض أسلوب التصميم والبرمجة: متجاوبة، ثنائية اللغة، وبكود نظيف." data-en="A demo page (no real client) showing my design and coding style: responsive, bilingual, clean code.">هذه صفحة نموذجية (بدون عميل حقيقي) لعرض أسلوب التصميم والبرمجة: متجاوبة، ثنائية اللغة، وبكود نظيف.</p>
+<a class="btn" href="#contact" data-ar="تواصل معنا" data-en="Get in touch">تواصل معنا</a>
+</section>
+<section class="grid">
+<div class="card"><h3 data-ar="متجاوبة" data-en="Responsive">متجاوبة</h3><p data-ar="تعمل على الموبايل والتابلت والكمبيوتر." data-en="Works on phone, tablet and desktop.">تعمل على الموبايل والتابلت والكمبيوتر.</p></div>
+<div class="card"><h3 data-ar="ثنائية اللغة" data-en="Bilingual">ثنائية اللغة</h3><p data-ar="تبديل بين العربي والإنجليزي مع اتجاه الصفحة الصحيح." data-en="Switch between Arabic and English with correct direction.">تبديل بين العربي والإنجليزي مع اتجاه الصفحة الصحيح.</p></div>
+<div class="card"><h3 data-ar="كود منظم" data-en="Clean code">كود منظم</h3><p data-ar="HTML و CSS و JavaScript بدون مكتبات ثقيلة." data-en="Plain HTML, CSS and JavaScript, no heavy libraries.">HTML و CSS و JavaScript بدون مكتبات ثقيلة.</p></div>
+</section>
+<section class="price"><h2 data-ar="نموذج تواصل" data-en="Contact form" id="contact">نموذج تواصل</h2></section>
+<form id="f">
+<input name="name" required placeholder="الاسم" data-ph-ar="الاسم" data-ph-en="Name">
+<input name="email" type="email" required placeholder="البريد" data-ph-ar="البريد" data-ph-en="Email">
+<textarea name="message" rows="4" required placeholder="رسالتك" data-ph-ar="رسالتك" data-ph-en="Your message"></textarea>
+<button data-ar="إرسال" data-en="Send">إرسال</button>
+<p id="msg"></p>
+</form>
+<footer data-ar="نموذج تصميم للعرض فقط." data-en="Demo design for showcase only.">نموذج تصميم للعرض فقط.</footer>
+<script>
+let lang="ar";
+const L=document.getElementById("lang");
+L.onclick=()=>{
+  lang=lang==="ar"?"en":"ar";
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+  document.querySelectorAll("[data-ar]").forEach(e=>e.textContent=e.dataset[lang]);
+  document.querySelectorAll("[data-ph-ar]").forEach(e=>e.placeholder=e.dataset[lang==="ar"?"phAr":"phEn"]);
+  L.textContent=lang==="ar"?"English":"العربية";
+};
+document.getElementById("f").onsubmit=e=>{
+  e.preventDefault();
+  document.getElementById("msg").textContent=lang==="ar"?"تم الاستلام (نموذج تجريبي، لا يتم إرسال شيء).":"Received (demo form, nothing is sent).";
+};
+</script>
+</body>
+</html>
